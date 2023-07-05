@@ -85,105 +85,102 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
             child: Column(
               children: [
                 // this is custom app bar widget
-                Hero(
-                  tag: widget.note?.id == null ? 2 : widget.note!.id!,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: TAppPadding.p16,
-                      left: TAppPadding.p16,
-                      right: TAppPadding.p16,
-                    ),
-                    child: CustomAppBar(
-                      showBack: true,
-                      title: TAppStrings.tEmpty,
-                      onBackPressed: () {
-                        if (titleTEC.text.isNotEmpty ||
-                            descTEC.document.toPlainText().length != 1) {
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: TAppPadding.p16,
+                    left: TAppPadding.p16,
+                    right: TAppPadding.p16,
+                  ),
+                  child: CustomAppBar(
+                    showBack: true,
+                    title: TAppStrings.tEmpty,
+                    onBackPressed: () {
+                      if (titleTEC.text.isNotEmpty ||
+                          descTEC.document.toPlainText().length != 1) {
+                        var json =
+                            jsonEncode(descTEC.document.toDelta().toJson());
+
+                        buildChangesDialog(
+                            context: context,
+                            text: TAppStrings.tDiscardChanges,
+                            onNegativePressed: () {
+                              Navigator.of(context).pop();
+                              // if (widget.note?.id != null) {
+                              Future.delayed(
+                                const Duration(
+                                  milliseconds:
+                                      TAppConstants.tDialogAnimDurationInSc,
+                                ),
+                                () => Navigator.of(context).pop(),
+                              );
+                              //}
+                            },
+                            onPositivePressed: () {
+                              Navigator.of(context).pop();
+                              if (widget.note?.id != null) {
+                                // means user is currently updating a note
+                                // so perform update operation
+                                _viewModel.updateNote(
+                                  context: context,
+                                  noteId: widget.note!.id!,
+                                  title: titleTEC.text,
+                                  desc: json,
+                                );
+                              } else {
+                                // means user is currently updating a note
+                                // so perform create operation
+                                _viewModel.createNote(
+                                    context: context,
+                                    title: titleTEC.text,
+                                    desc: json);
+                              }
+                              clearFields();
+                            });
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    icons: [
+                      ActionMenuWidget(
+                        icon: TAssetManager.getIconPath(tVisibilityIcon),
+                        onTap: () {},
+                      ),
+                      20.pw,
+                      ActionMenuWidget(
+                        icon: TAssetManager.getIconPath(tSaveIcon),
+                        onTap: () {
+                          // get text entered from quill editor
                           var json =
                               jsonEncode(descTEC.document.toDelta().toJson());
-
                           buildChangesDialog(
-                              context: context,
-                              text: TAppStrings.tDiscardChanges,
-                              onNegativePressed: () {
-                                Navigator.of(context).pop();
-                                // if (widget.note?.id != null) {
-                                Future.delayed(
-                                  const Duration(
-                                    milliseconds:
-                                        TAppConstants.tDialogAnimDurationInSc,
-                                  ),
-                                  () => Navigator.of(context).pop(),
-                                );
-                                //}
-                              },
-                              onPositivePressed: () {
-                                Navigator.of(context).pop();
-                                if (widget.note?.id != null) {
-                                  // means user is currently updating a note
-                                  // so perform update operation
-                                  _viewModel.updateNote(
+                            context: context,
+                            text: TAppStrings.tSaveChanges,
+                            onNegativePressed: () =>
+                                Navigator.of(context).pop(),
+                            onPositivePressed: () {
+                              Navigator.of(context).pop();
+                              if (widget.note?.id != null) {
+                                // means user is currently updating a note
+                                // so perform update operation
+                                _viewModel.updateNote(
                                     context: context,
                                     noteId: widget.note!.id!,
                                     title: titleTEC.text,
-                                    desc: json,
-                                  );
-                                } else {
-                                  // means user is currently updating a note
-                                  // so perform create operation
-                                  _viewModel.createNote(
-                                      context: context,
-                                      title: titleTEC.text,
-                                      desc: json);
-                                }
-                                clearFields();
-                              });
-                        } else {
-                          Navigator.pop(context);
-                        }
-                      },
-                      icons: [
-                        ActionMenuWidget(
-                          icon: TAssetManager.getIconPath(tVisibilityIcon),
-                          onTap: () {},
-                        ),
-                        20.pw,
-                        ActionMenuWidget(
-                          icon: TAssetManager.getIconPath(tSaveIcon),
-                          onTap: () {
-                            // get text entered from quill editor
-                            var json =
-                                jsonEncode(descTEC.document.toDelta().toJson());
-                            buildChangesDialog(
-                              context: context,
-                              text: TAppStrings.tSaveChanges,
-                              onNegativePressed: () =>
-                                  Navigator.of(context).pop(),
-                              onPositivePressed: () {
-                                Navigator.of(context).pop();
-                                if (widget.note?.id != null) {
-                                  // means user is currently updating a note
-                                  // so perform update operation
-                                  _viewModel.updateNote(
-                                      context: context,
-                                      noteId: widget.note!.id!,
-                                      title: titleTEC.text,
-                                      desc: json);
-                                } else {
-                                  // means user is currently updating a note
-                                  // so perform create operation
-                                  _viewModel.createNote(
-                                      context: context,
-                                      title: titleTEC.text,
-                                      desc: json);
-                                }
-                                clearFields();
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                                    desc: json);
+                              } else {
+                                // means user is currently updating a note
+                                // so perform create operation
+                                _viewModel.createNote(
+                                    context: context,
+                                    title: titleTEC.text,
+                                    desc: json);
+                              }
+                              clearFields();
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
                 20.ph,

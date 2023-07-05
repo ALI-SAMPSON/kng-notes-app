@@ -53,16 +53,17 @@ class AuthViewModel extends BaseModel {
   Future<void> createNewUser({required BuildContext context}) async {
     setBusy(true);
     var result = await _authService.createNewUserWithEmailAndPassword(
-      fullname: fullNameTEC.text,
-      email: emailTEC.text,
-      password: passwordTEC.text,
+      fullname: fullNameTEC.text.trim(),
+      email: emailTEC.text.trim(),
+      password: passwordTEC.text.trim(),
     );
     result.fold((err) {
       PopupDialogs(context).errorMessage(err.getMessage());
       setBusy(false);
     }, (res) {
       setBusy(false);
-      Navigator.pushNamed(context, Routes.noteRoute);
+      clearFields();
+      Navigator.pushReplacementNamed(context, Routes.noteRoute);
     });
     notifyListeners();
   }
@@ -71,25 +72,35 @@ class AuthViewModel extends BaseModel {
   Future<void> signIn({required BuildContext context}) async {
     setBusy(true);
     var result = await _authService.signInWithEmailAndPassword(
-      email: emailTEC.text,
-      password: passwordTEC.text,
+      email: emailTEC.text.trim(),
+      password: passwordTEC.text.trim(),
     );
     result.fold((err) {
       setBusy(false);
       PopupDialogs(context).errorMessage(err.getMessage());
     }, (res) {
       setBusy(false);
-      Navigator.pushNamed(context, Routes.noteRoute);
+      clearFields();
+      Navigator.pushReplacementNamed(context, Routes.noteRoute);
     });
     notifyListeners();
+  }
+
+  // clear text editing controllers
+  void clearFields() {
+    fullNameTEC.clear();
+    emailTEC.clear();
+    passwordTEC.clear();
   }
 
   // this method call auth service implementation to logout a user
   Future<void> logOut({required BuildContext context}) async {
     setBusy(true);
     await _authService.logout();
-    Navigator.pushNamedAndRemoveUntil(
-        context, Routes.landingRoute, (route) => true);
+    Navigator.pushReplacementNamed(
+      context,
+      Routes.landingRoute,
+    );
     setBusy(false);
   }
 }

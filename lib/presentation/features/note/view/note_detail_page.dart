@@ -63,15 +63,12 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                 onBackPressed: () => Navigator.of(context).pop(),
                 title: TAppStrings.tEmpty,
                 icons: [
-                  Hero(
-                    tag: widget.note.id ?? 2,
-                    child: ActionMenuWidget(
-                      icon: TAssetManager.getIconPath(tEditIcon),
-                      onTap: () => Navigator.pushNamed(
-                        context,
-                        Routes.noteEditorRoute,
-                        arguments: widget.note,
-                      ),
+                  ActionMenuWidget(
+                    icon: TAssetManager.getIconPath(tEditIcon),
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      Routes.noteEditorRoute,
+                      arguments: widget.note,
                     ),
                   ),
                 ],

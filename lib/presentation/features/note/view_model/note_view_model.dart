@@ -7,6 +7,7 @@ import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/commons/widgets/popup_dialogs.dart';
 import 'package:note_taking_app/data/remote/services/note_service/note_service.dart';
 import 'package:note_taking_app/domain/note_model.dart';
+import 'package:note_taking_app/presentation/resources/app_dimens.dart';
 import 'package:note_taking_app/presentation/resources/app_strings.dart';
 
 import '../../../../data/remote/wrappers/network_info.dart';
@@ -63,7 +64,7 @@ class NoteViewModel extends ChangeNotifier {
       if (context.mounted) {
         setLoading(false);
         // PopupDialogs(context).successMessage(TAppStrings.tNoteAddedMsg);
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
         debugPrint("Note created offline");
       }
     }
