@@ -10,24 +10,17 @@ class AuthDataSourceImpl extends AuthDataSource {
   final NetworkInfo _networkInfo = instance<NetworkInfo>();
 
   @override
-  Future createNewUserWithEmailAndPassword(
-      {required String fullname,
-      required String email,
-      required String password}) async {
-    // if(await _networkInfo.isConnected){
-    //   firebaseFirestore.enableNetwork().then((_) {
-    //
-    //   });
-    //
-    // }
-    await firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-  }
+  Future<UserCredential> createNewUserWithEmailAndPassword(
+          {required String fullname,
+          required String email,
+          required String password}) async =>
+      await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
   @override
-  Future signInWithEmailAndPassword({
+  Future<UserCredential> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async =>

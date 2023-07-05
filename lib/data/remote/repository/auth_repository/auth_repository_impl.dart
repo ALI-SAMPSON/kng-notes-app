@@ -25,7 +25,6 @@ class AuthRepositoryImpl extends AuthRepository {
         email: email,
         password: password,
       );
-      debugPrint('User: ${auth.user?.uid}');
       // create user and add to db
       var user = UserModel(
         id: auth.user?.uid,
