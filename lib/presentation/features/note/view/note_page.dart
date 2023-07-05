@@ -83,6 +83,8 @@ class NotePage extends StatelessWidget {
                     onTap: () {
                       buildChangesDialog(
                         context: context,
+                        positiveButtonText: TAppStrings.tYes,
+                        negativeButtonText: TAppStrings.tCancel,
                         text: TAppStrings.tSignoutMsg,
                         onNegativePressed: () => Navigator.of(context).pop(),
                         onPositivePressed: () => context

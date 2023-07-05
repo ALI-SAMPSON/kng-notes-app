@@ -9,13 +9,17 @@ import 'package:note_taking_app/util/ext_fxns.dart';
 
 class PopupDialogWidget extends StatelessWidget {
   final String text;
+  final String negativeButtonText;
+  final String positiveButtonText;
   final Function() onNegativePressed;
   final Function() onPositivePressed;
   const PopupDialogWidget({
     super.key,
     required this.text,
     required this.onNegativePressed,
+    this.negativeButtonText = TAppStrings.tDiscard,
     required this.onPositivePressed,
+    this.positiveButtonText = TAppStrings.tSave,
   });
 
   @override
@@ -62,7 +66,7 @@ class PopupDialogWidget extends StatelessWidget {
                       ),
                       minimumSize: const Size(100, 38)),
                   child: Text(
-                    TAppStrings.tDiscard,
+                    negativeButtonText,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium
@@ -82,7 +86,7 @@ class PopupDialogWidget extends StatelessWidget {
                       ),
                       minimumSize: const Size(100, 38)),
                   child: Text(
-                    TAppStrings.tSave,
+                    positiveButtonText,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium

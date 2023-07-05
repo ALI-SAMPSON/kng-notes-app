@@ -10,6 +10,8 @@ import 'package:note_taking_app/presentation/resources/app_strings.dart';
 Future buildChangesDialog({
   required BuildContext context,
   required String text,
+  required String positiveButtonText,
+  required String negativeButtonText,
   required Function() onNegativePressed,
   required Function() onPositivePressed,
 }) {
@@ -26,6 +28,8 @@ Future buildChangesDialog({
         ),
         content: PopupDialogWidget(
           text: text,
+          positiveButtonText: positiveButtonText,
+          negativeButtonText: negativeButtonText,
           onNegativePressed: onNegativePressed,
           onPositivePressed: onPositivePressed,
         ),

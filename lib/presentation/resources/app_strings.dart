@@ -9,6 +9,8 @@ class TAppStrings {
   static const String tFileNotFoundMsg = 'File not found. Try searching again.';
   static const String tEmpty = '';
   static const String tSearchByKeyword = 'Search by the keyword...';
+  static const String tYes = 'Yes';
+  static const String tCancel = 'Cancel';
   static const String tTitle = 'Title';
   static const String tFullName = 'Enter your full name';
   static const String tEmail = 'Enter your email';
@@ -19,6 +21,7 @@ class TAppStrings {
   static const String tSignoutMsg =
       'Are you sure you want \nsign out of the app ?';
   static const String tSave = 'Save';
+  static const String tKeep = 'Keep';
   static const String tDiscard = 'Discard';
   static const String tChangesSyncedMsg =
       'Changes will be synced & applied when you\'re are connected to the internet.';

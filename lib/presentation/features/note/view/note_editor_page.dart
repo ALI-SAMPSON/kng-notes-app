@@ -102,6 +102,8 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
 
                         buildChangesDialog(
                             context: context,
+                            positiveButtonText: TAppStrings.tKeep,
+                            negativeButtonText: TAppStrings.tDiscard,
                             text: TAppStrings.tDiscardChanges,
                             onNegativePressed: () {
                               Navigator.of(context).pop();
@@ -154,6 +156,8 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
                               jsonEncode(descTEC.document.toDelta().toJson());
                           buildChangesDialog(
                             context: context,
+                            positiveButtonText: TAppStrings.tSave,
+                            negativeButtonText: TAppStrings.tDiscard,
                             text: TAppStrings.tSaveChanges,
                             onNegativePressed: () =>
                                 Navigator.of(context).pop(),
