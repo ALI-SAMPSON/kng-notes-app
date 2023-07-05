@@ -3,6 +3,7 @@ import 'package:note_taking_app/presentation/features/note/widgets/action_menu_w
 import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/asset_manager.dart';
 import 'package:note_taking_app/util/ext_fxns.dart';
+import 'package:note_taking_app/util/helper/size_helper.dart';
 
 class CustomAppBar extends StatelessWidget {
   final bool showBack;

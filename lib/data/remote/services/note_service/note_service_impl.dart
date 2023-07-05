@@ -10,6 +10,7 @@ import 'package:note_taking_app/presentation/resources/app_strings.dart';
 
 class NoteServiceImpl extends NoteService {
   final _noteRepository = instance<NoteRepository>();
+  final NetworkInfo _networkInfo = instance<NetworkInfo>();
 
   @override
   Future<Either<Failure, String>> createNote({required NoteModel note}) =>
@@ -39,8 +40,8 @@ class NoteServiceImpl extends NoteService {
   // }
 
   @override
-  Stream<List<NoteModel>> getNotes({required String userId}) {
-    return firebaseFirestore
+  Stream<List<NoteModel>> getNotes({required String userId}) async* {
+    yield* firebaseFirestore
         .collection(TAppConstants.tNotes)
         .where(TAppConstants.tCreatedBy, isEqualTo: userId)
         .orderBy(TAppConstants.tCreatedAt)
@@ -52,16 +53,11 @@ class NoteServiceImpl extends NoteService {
 
   @override
   Stream<List<NoteModel>> searchNotes(
-      {required String userId, required String search}) {
-    return firebaseFirestore
+      {required String userId, required String search}) async* {
+    yield* firebaseFirestore
         .collection(TAppConstants.tNotes)
         .where(TAppConstants.tCreatedBy, isEqualTo: userId)
         .where(TAppConstants.tTitleSearch, arrayContains: search.toLowerCase())
-        // .where(TAppConstants.tTitle,
-        //     isGreaterThanOrEqualTo: search.toUpperCase())
-        // .where(TAppConstants.tTitle, isLessThan: '${search.toUpperCase()}z')
-        // .startAt([search])
-        // .endAt(['$search\uf8ff'])
         .snapshots()
         .map((snapshots) => snapshots.docs.map((document) {
               return NoteModel.fromJson(document.data());

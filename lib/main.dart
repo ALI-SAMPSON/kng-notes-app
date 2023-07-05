@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/app/app_di.dart';
@@ -15,12 +17,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
   await initAppModule(); // initialize dependency injection
-  runApp(MyApp());
+  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()));
 }
 
 // initialize firebase here
 Future<void> initializeFirebase() async => await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform);
+        options: DefaultFirebaseOptions.currentPlatform)
+    .whenComplete(() => print("completed init"));
 
 class MyApp extends StatelessWidget {
   const MyApp._internal(); // private named constructor
@@ -40,6 +43,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FadeInAnimationViewModel()),
       ],
       child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         title: TAppStrings.tAppName,
         theme: TAppTheme.darkTheme,

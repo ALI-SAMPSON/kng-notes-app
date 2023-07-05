@@ -34,6 +34,8 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
   final ScrollController scrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
 
+  late Color backgroundColor = TAppColors.tPrimary;
+
   @override
   void initState() {
     setPreviewedNoteData();
@@ -76,7 +78,7 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
     _viewModel = context.watch<NoteViewModel>();
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: TAppColors.tPrimary,
+      //backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
             padding: const EdgeInsets.all(TAppPadding.p0),
@@ -99,6 +101,7 @@ class _NoteEditorPageState extends State<NoteEditorPage> {
                             descTEC.document.toPlainText().length != 1) {
                           var json =
                               jsonEncode(descTEC.document.toDelta().toJson());
+
                           buildChangesDialog(
                               context: context,
                               text: TAppStrings.tDiscardChanges,

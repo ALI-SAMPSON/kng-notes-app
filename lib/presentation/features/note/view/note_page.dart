@@ -23,13 +23,14 @@ import 'package:note_taking_app/util/helper/size_helper.dart';
 import 'package:provider/provider.dart';
 
 class NotePage extends StatelessWidget {
-  const NotePage({Key? key}) : super(key: key);
+  final List<NoteModel> notes;
+  const NotePage({Key? key, required this.notes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // final isDarkMode =
     //     MediaQuery.of(context).platformBrightness == Brightness.dark;
-
+    //assert(notes.isNotEmpty); // for flutter widget testing
     return Scaffold(
       backgroundColor: TAppColors.tPrimary,
       floatingActionButton: FloatingActionButton(
@@ -59,7 +60,7 @@ class NotePage extends StatelessWidget {
           padding: const EdgeInsets.all(TAppPadding.p16),
           child: Column(
             children: [
-              // this is custom app bar widget
+              ///this is custom app bar widget
               CustomAppBar(
                 showBack: false,
                 onBackPressed: () {},
@@ -93,56 +94,82 @@ class NotePage extends StatelessWidget {
                 ],
               ),
               //10.ph,
-              // this is the listview builder to display the list of notes
-              Expanded(
-                child: StreamBuilder<List<NoteModel>>(
-                    stream: Provider.of<NoteViewModel>(context, listen: false)
-                        .getNotes(),
-                    builder: (context, snapshot) {
-                      return (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                          ? const CustomProgressIndicator()
-                          : (snapshot.data != null && snapshot.data!.isEmpty)
-                              ? Align(
-                                  alignment: Alignment.center,
-                                  child: EmptyStateWidget(
-                                    text: TAppStrings.tCreateNoteMsg,
-                                    icon: TAssetManager.getIconPath(tEmptyIcon),
-                                  ),
-                                )
-                              : AnimationLimiter(
-                                  child: ListView.builder(
-                                    itemCount: snapshot.data?.length,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      final note = snapshot.data![index];
-                                      return AnimationConfiguration
-                                          .staggeredList(
-                                        position: index,
-                                        duration: const Duration(
-                                          milliseconds: TAppConstants
-                                              .tDialogAnimDurationInSc,
+              // this is the listview builder to
+              // display the list of notes for widget
+              // testing
+              notes.isNotEmpty
+                  ? Expanded(
+                      child: ListView.builder(
+                        itemCount: notes.length,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final note = notes[index];
+                          return NoteWidget(
+                            note: note,
+                            index: index,
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              Routes.noteDetailRoute,
+                              arguments: note,
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : Expanded(
+                      child: StreamBuilder<List<NoteModel>>(
+                          stream:
+                              Provider.of<NoteViewModel>(context, listen: false)
+                                  .getNotes(),
+                          builder: (context, snapshot) {
+                            return (snapshot.connectionState ==
+                                    ConnectionState.waiting)
+                                ? const CustomProgressIndicator()
+                                : (snapshot.data != null &&
+                                        snapshot.data!.isEmpty)
+                                    ? Align(
+                                        alignment: Alignment.center,
+                                        child: EmptyStateWidget(
+                                          text: TAppStrings.tCreateNoteMsg,
+                                          icon: TAssetManager.getIconPath(
+                                              tEmptyIcon),
                                         ),
-                                        child: SlideAnimation(
-                                          verticalOffset: TAppSize.s50,
-                                          child: FadeInAnimation(
-                                            child: NoteWidget(
-                                              note: note,
-                                              index: index,
-                                              onTap: () => Navigator.pushNamed(
-                                                context,
-                                                Routes.noteDetailRoute,
-                                                arguments: note,
+                                      )
+                                    : AnimationLimiter(
+                                        child: ListView.builder(
+                                          itemCount: snapshot.data?.length,
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemBuilder: (context, index) {
+                                            final note = snapshot.data![index];
+                                            return AnimationConfiguration
+                                                .staggeredList(
+                                              position: index,
+                                              duration: const Duration(
+                                                milliseconds: TAppConstants
+                                                    .tDialogAnimDurationInSc,
                                               ),
-                                            ),
-                                          ),
+                                              child: SlideAnimation(
+                                                verticalOffset: TAppSize.s50,
+                                                child: FadeInAnimation(
+                                                  child: NoteWidget(
+                                                    note: note,
+                                                    index: index,
+                                                    onTap: () =>
+                                                        Navigator.pushNamed(
+                                                      context,
+                                                      Routes.noteDetailRoute,
+                                                      arguments: note,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       );
-                                    },
-                                  ),
-                                );
-                    }),
-              ),
+                          }),
+                    ),
             ],
           ),
         ),

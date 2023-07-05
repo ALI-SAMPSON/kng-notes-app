@@ -37,54 +37,41 @@ class NoteViewModel extends ChangeNotifier {
     required String title,
     required String desc,
   }) async {
-    if (await _networkCall.isConnected) {
-      setLoading(true);
-      //var json = jsonEncode(descTEC.document.toDelta().toJson());
-      var note = NoteModel(
-        title: title,
-        titleSearch: setSearchParam(title.toLowerCase()),
-        description: jsonDecode(desc)[0]['insert'],
-        createdBy: firebaseAuth.currentUser!.uid,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      );
-      var result = await _noteService.createNote(note: note);
-      result.fold((err) {
-        debugPrint("Error: ${err.getMessage()}");
-        setLoading(false);
-        PopupDialogs(context).errorMessage(err.getMessage());
-      }, (res) {
-        setLoading(false);
-        //clearFields(titleTEC, descTEC);
-        Navigator.of(context).pop();
-        PopupDialogs(context).successMessage(res);
-      });
-    } else {
+    setLoading(true);
+    //var json = jsonEncode(descTEC.document.toDelta().toJson());
+    var note = NoteModel(
+      title: title,
+      titleSearch: setSearchParam(title.toLowerCase()),
+      description: jsonDecode(desc)[0]['insert'],
+      createdBy: firebaseAuth.currentUser!.uid,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    var result = await _noteService.createNote(note: note);
+    result.fold((err) {
+      debugPrint("Error: ${err.getMessage()}");
+      setLoading(false);
+      PopupDialogs(context).errorMessage(err.getMessage());
+    }, (res) {
+      setLoading(false);
+      //  PopupDialogs(context).successMessage(res);
+      Navigator.of(context).pop();
+    });
+    // display message after a note has been deleted
+    // since that operation is done in the background
+    if (!await _networkCall.isConnected) {
       if (context.mounted) {
+        setLoading(false);
+        // PopupDialogs(context).successMessage(TAppStrings.tNoteAddedMsg);
         Navigator.of(context).pop();
-        PopupDialogs(context).successMessage(TAppStrings.tChangesSyncedMsg);
-        debugPrint("Insert offline");
+        debugPrint("Note created offline");
       }
     }
 
     notifyListeners();
   }
 
-  // // displays the selected note data to field for editing
-  // void setPreviewedNoteData({required NoteModel? note}) {
-  //   if (note?.id != null) {
-  //     titleTEC.text = note?.title ?? TAppStrings.tEmpty;
-  //     var desc = note?.description ?? TAppStrings.tEmpty;
-  //     var encodeJson = jsonEncode([
-  //       {"insert": "$desc\n"}
-  //     ]);
-  //     descTEC = QuillController(
-  //       document: Document.fromJson(jsonDecode(encodeJson)),
-  //       selection: const TextSelection.collapsed(offset: 0),
-  //     );
-  //   }
-  // }
-
+  // set search param when a note is created or updated
   setSearchParam(String title) {
     List<String> caseSearchList = <String>[];
     String temp = "";
@@ -113,34 +100,36 @@ class NoteViewModel extends ChangeNotifier {
     required String title,
     required String desc,
   }) async {
-    if (await _networkCall.isConnected) {
-      setLoading(true);
-      // decode text from quill controller
-      //var json = jsonEncode(descTEC.document.toDelta().toJson());
-      // create new note object
-      var note = NoteModel(
-        id: noteId,
-        title: title,
-        titleSearch: setSearchParam(title.toLowerCase()),
-        description: jsonDecode(desc)[0]['insert'],
-        createdBy: firebaseAuth.currentUser!.uid,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      );
-      var result = await _noteService.updateNote(note: note);
-      result.fold((err) {
-        setLoading(false);
-        PopupDialogs(context).errorMessage(err.getMessage());
-      }, (res) {
-        setLoading(false);
-        Navigator.of(context).pop();
-        PopupDialogs(context).successMessage(res);
-      });
-    } else {
+    setLoading(true);
+    // decode text from quill controller
+    //var json = jsonEncode(descTEC.document.toDelta().toJson());
+    // create new note object
+    var note = NoteModel(
+      id: noteId,
+      title: title,
+      titleSearch: setSearchParam(title.toLowerCase()),
+      description: jsonDecode(desc)[0]['insert'],
+      createdBy: firebaseAuth.currentUser!.uid,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    var result = await _noteService.updateNote(note: note);
+    result.fold((err) {
+      setLoading(false);
+      PopupDialogs(context).errorMessage(err.getMessage());
+    }, (res) {
+      setLoading(false);
+      Navigator.of(context).pop();
+      PopupDialogs(context).successMessage(res);
+    });
+    // display message after note has been update
+    // since that operation is done in the background
+    if (!await _networkCall.isConnected) {
       if (context.mounted) {
+        setLoading(false);
         Navigator.of(context).pop();
-        PopupDialogs(context).successMessage(TAppStrings.tChangesSyncedMsg);
-        debugPrint("Insert offline");
+        PopupDialogs(context).successMessage(TAppStrings.tNoteUpdatedMsg);
+        debugPrint("Note updated offline");
       }
     }
 
@@ -152,21 +141,24 @@ class NoteViewModel extends ChangeNotifier {
     required BuildContext context,
     required String noteId,
   }) async {
-    if (await _networkCall.isConnected) {
-      var result = await _noteService.deleteNote(noteId: noteId);
-      result.fold((err) {
-        PopupDialogs(context).errorMessage(err.getMessage());
-      }, (res) {
-        debugPrint(res);
-        //PopupDialogs(context).successMessage(res);
-      });
-    } else {
+    var result = await _noteService.deleteNote(noteId: noteId);
+    result.fold((err) {
+      PopupDialogs(context).errorMessage(err.getMessage());
+    }, (res) {
+      debugPrint(res);
+      PopupDialogs(context).successMessage(res);
+    });
+    // display message after a note has been deleted
+    // since that operation is done in the background
+    if (!await _networkCall.isConnected) {
       if (context.mounted) {
+        setLoading(false);
         Navigator.of(context).pop();
-        PopupDialogs(context).successMessage(TAppStrings.tChangesSyncedMsg);
-        debugPrint("Delete offline");
+        PopupDialogs(context).successMessage(TAppStrings.tNoteDeletedMsg);
+        debugPrint("Note deleted offline");
       }
     }
+
     notifyListeners();
   }
 

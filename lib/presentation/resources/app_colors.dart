@@ -5,6 +5,7 @@ class TAppColors {
 
   static const tPrimary = Color(0xFF252525);
   static const tSecondary = Color(0xFF3B3B3B);
+  static const tTertiary = Color(0xFF606060);
   static const tFillColor = Color(0xFFEBECEE);
   static const tWhite = Color(0xFFFFFFFF);
   static const tBackground = Color(0xFFFAFAFA);

@@ -23,6 +23,8 @@ dependencies:
   flutter_flushbar: ^0.0.2
   shimmer: ^3.0.0
   flutter_quill: ^7.2.10
+  flutter_launcher_icons: ^0.13.1
+  device_preview: ^1.1.0
 
   # FIREBASE PACKAGES
   firebase_core: ^2.14.0
@@ -36,20 +38,21 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
 
   # UTIL PACKAGES
-  intl: ^0.18.1
+  intl: ^0.18.0
+
+  # STATE MANAGEMENT PACKAGES
+  provider: ^6.0.5
 
   # ANIMATION PACKAGES
   flutter_staggered_animations: ^1.1.1
   flutter_animated_dialog: ^2.0.1
-  provider: ^6.0.5
-  fake_cloud_firestore: ^2.4.1+1
-  flutter_launcher_icons: ^0.13.1
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  fake_cloud_firestore: ^2.4.1+1
 
   flutter_lints: ^2.0.0
 

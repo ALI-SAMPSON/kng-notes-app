@@ -33,7 +33,10 @@ class RouteGenerator {
       case Routes.signUpRoute:
         return MaterialPageRoute(builder: (_) => const SignupPage());
       case Routes.noteRoute:
-        return MaterialPageRoute(builder: (_) => const NotePage());
+        return MaterialPageRoute(
+            builder: (_) => const NotePage(
+                  notes: [],
+                ));
       case Routes.noteSearchRoute:
         return MaterialPageRoute(builder: (_) => const NoteSearchPage());
       case Routes.noteDetailRoute:
