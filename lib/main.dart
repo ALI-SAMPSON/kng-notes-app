@@ -17,7 +17,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
   await initAppModule(); // initialize dependency injection
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()));
+  runApp(DevicePreview(enabled: kReleaseMode, builder: (context) => MyApp()));
 }
 
 // initialize firebase here
