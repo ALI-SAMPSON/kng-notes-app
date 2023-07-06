@@ -53,6 +53,9 @@ class TAppRadius {
   static const double r24 = 24.0;
   static const double r28 = 28.0;
   static const double r32 = 32.0;
+  static const double r35 = 35.0;
+  static const double r40 = 40.0;
+  static const double r50 = 50.0;
 }
 
 class TAppSize {
@@ -62,6 +65,7 @@ class TAppSize {
   static const double s2 = 2.0;
   static const double s4 = 4.0;
   static const double s5 = 5.0;
+  static const double s_5 = -5.0;
   static const double s8 = 8.0;
   static const double s10 = 10.0;
   static const double s12 = 12.0;
@@ -74,6 +78,7 @@ class TAppSize {
   static const double s40 = 40.0;
   static const double s45 = 45.0;
   static const double s50 = 50.0;
+  static const double s70 = 70.0;
   static const double s80 = 80.0;
   static const double s90 = 90.0;
   static const double s_100 = -100.0;

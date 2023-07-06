@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,6 +7,7 @@ import 'package:note_taking_app/domain/note_model.dart';
 import 'package:note_taking_app/presentation/features/auth/view_model/auth_view_model.dart';
 import 'package:note_taking_app/presentation/features/note/view_model/note_view_model.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/action_menu_widget.dart';
+import 'package:note_taking_app/presentation/features/note/widgets/custom_fab_button.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/custom_progress_indicator.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/empty_state_widget.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/note_widget.dart';
@@ -19,7 +18,6 @@ import 'package:note_taking_app/presentation/resources/asset_manager.dart';
 import 'package:note_taking_app/routes/routes.dart';
 import 'package:note_taking_app/util/dialog_util.dart';
 import 'package:note_taking_app/util/ext_fxns.dart';
-import 'package:note_taking_app/util/helper/size_helper.dart';
 import 'package:provider/provider.dart';
 
 class NotePage extends StatelessWidget {
@@ -33,10 +31,9 @@ class NotePage extends StatelessWidget {
     //assert(notes.isNotEmpty); // for flutter widget testing
     return Scaffold(
       backgroundColor: TAppColors.tPrimary,
-      floatingActionButton: FloatingActionButton(
-        elevation: TAppElevation.e5,
-        backgroundColor: TAppColors.tPrimary,
-        onPressed: () => Navigator.pushNamed(
+      floatingActionButton: CustomFabButton(
+        icon: TAssetManager.getIconPath(tAddIcon),
+        onTap: () => Navigator.pushNamed(
           context,
           Routes.noteEditorRoute,
           arguments: NoteModel(
@@ -48,11 +45,6 @@ class NotePage extends StatelessWidget {
             createdAt: null,
             updatedAt: null,
           ),
-        ),
-        child: SvgPicture.asset(
-          TAssetManager.getIconPath(tAddIcon),
-          width: TAppSize.s40,
-          height: TAppSize.s40,
         ),
       ),
       body: SafeArea(

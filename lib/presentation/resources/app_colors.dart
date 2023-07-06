@@ -15,6 +15,7 @@ class TAppColors {
   static const tBlue = Colors.blue;
   static const tTextColor = Color(0xFFCFCFCF);
   static const tTransparent = Colors.transparent;
+  static const tBlack = Color(0xFF000000);
 
   // colors for shimmer
   static const tGreyColorShade100 = Color(0xFFf5f5f5);
