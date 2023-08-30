@@ -1,14 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/commons/widgets/popup_dialogs.dart';
 import 'package:note_taking_app/data/remote/services/auth_service/auth_service.dart';
-import 'package:note_taking_app/domain/user_model.dart';
 import 'package:note_taking_app/presentation/features/base/base.model.dart';
-import 'package:note_taking_app/presentation/resources/app_strings.dart';
 import 'package:note_taking_app/routes/routes.dart';
-import 'package:note_taking_app/util/enum/app_state.dart';
 
 class AuthViewModel extends BaseModel {
   final _authService = instance<AuthService>();

@@ -1,7 +1,6 @@
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/data/remote/data_sources/note_data_source/note_data_source.dart';
-import 'package:note_taking_app/data/remote/wrappers/network_call_wrapper.dart';
 import 'package:note_taking_app/data/remote/wrappers/network_info.dart';
 import 'package:note_taking_app/domain/note_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

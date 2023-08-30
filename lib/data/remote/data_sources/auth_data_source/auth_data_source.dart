@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:note_taking_app/domain/note_model.dart';
 
 abstract class AuthDataSource {
   // abstract method to create a note

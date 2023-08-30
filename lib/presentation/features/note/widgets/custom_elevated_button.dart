@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/custom_progress_indicator.dart';

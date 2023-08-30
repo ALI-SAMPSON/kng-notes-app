@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:note_taking_app/commons/widgets/popup_dialogs.dart';
 import 'package:note_taking_app/domain/note_model.dart';
 import 'package:note_taking_app/presentation/features/note/view_model/note_view_model.dart';
 import 'package:note_taking_app/presentation/resources/app_colors.dart';

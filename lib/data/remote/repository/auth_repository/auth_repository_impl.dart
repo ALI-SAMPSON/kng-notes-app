@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/data/remote/data_sources/auth_data_source/auth_data_source.dart';

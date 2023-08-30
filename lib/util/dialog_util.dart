@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/popup_dialog_widget.dart';
 import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
-import 'package:note_taking_app/presentation/resources/app_strings.dart';
 
 Future buildChangesDialog({
   required BuildContext context,

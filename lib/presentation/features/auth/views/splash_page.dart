@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_taking_app/app/app_constants.dart';
-import 'package:note_taking_app/commons/anim/animation_design.dart';
-import 'package:note_taking_app/commons/anim/animation_model.dart';
-import 'package:note_taking_app/commons/anim/fade_in_animation_view_model.dart';
-import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
-import 'package:note_taking_app/presentation/resources/app_strings.dart';
 import 'package:note_taking_app/presentation/resources/asset_manager.dart';
 import 'package:note_taking_app/routes/routes.dart';
-import 'package:note_taking_app/util/ext_fxns.dart';
-import 'package:note_taking_app/util/helper/size_helper.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class SplashPage extends StatefulWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/commons/widgets/custom_app_bar.dart';
 import 'package:note_taking_app/domain/note_model.dart';
@@ -131,7 +130,7 @@ class NotePage extends StatelessWidget {
                                       )
                                     : AnimationLimiter(
                                         child: ListView.builder(
-                                          itemCount: snapshot.data?.length,
+                                          itemCount: snapshot.data!.length,
                                           physics:
                                               const BouncingScrollPhysics(),
                                           itemBuilder: (context, index) {

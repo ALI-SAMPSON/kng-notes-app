@@ -49,7 +49,7 @@ class NoteRepositoryImpl extends NoteRepository {
     try {
       var snapshots = await _dataSource.getNotes(userId: userId);
       var notes =
-          await snapshots.docs.map((e) => NoteModel.fromSnapShot(e)).toList();
+          snapshots.docs.map((e) => NoteModel.fromSnapShot(e)).toList();
       return Right(notes);
     } on FirebaseException catch (err) {
       return Left(_errorWrapper.handleError(err));

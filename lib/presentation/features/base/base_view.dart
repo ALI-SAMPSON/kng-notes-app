@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class BaseView<T extends BaseModel> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
 
-  const BaseView({
+  const BaseView({super.key, 
     required this.builder,
   });
 

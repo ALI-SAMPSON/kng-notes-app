@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:note_taking_app/commons/anim/animation_model.dart';
-import 'package:note_taking_app/commons/anim/fade_in_animation_view_model.dart';
-import 'package:provider/provider.dart';
 
 class TFadeInAnimation extends StatelessWidget {
   const TFadeInAnimation({

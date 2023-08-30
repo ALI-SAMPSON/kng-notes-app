@@ -7,7 +7,6 @@ import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/commons/widgets/popup_dialogs.dart';
 import 'package:note_taking_app/data/remote/services/note_service/note_service.dart';
 import 'package:note_taking_app/domain/note_model.dart';
-import 'package:note_taking_app/presentation/resources/app_dimens.dart';
 import 'package:note_taking_app/presentation/resources/app_strings.dart';
 
 import '../../../../data/remote/wrappers/network_info.dart';

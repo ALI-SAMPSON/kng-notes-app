@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
 
 class CustomProgressIndicator extends StatelessWidget {

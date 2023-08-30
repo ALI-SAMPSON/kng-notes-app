@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:note_taking_app/app/app_constants.dart';
 import 'package:note_taking_app/app/app_di.dart';
 import 'package:note_taking_app/data/remote/data_sources/auth_data_source/auth_data_source.dart';
-import 'package:note_taking_app/data/remote/wrappers/network_call_wrapper.dart';
 import 'package:note_taking_app/data/remote/wrappers/network_info.dart';
 
 class AuthDataSourceImpl extends AuthDataSource {

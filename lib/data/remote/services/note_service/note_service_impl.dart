@@ -6,7 +6,6 @@ import 'package:note_taking_app/data/remote/repository/note_repository/note_repo
 import 'package:note_taking_app/data/remote/services/note_service/note_service.dart';
 import 'package:note_taking_app/data/remote/wrappers/network_info.dart';
 import 'package:note_taking_app/domain/note_model.dart';
-import 'package:note_taking_app/presentation/resources/app_strings.dart';
 
 class NoteServiceImpl extends NoteService {
   final _noteRepository = instance<NoteRepository>();

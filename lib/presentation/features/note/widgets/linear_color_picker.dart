@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:note_taking_app/domain/note_model.dart';
 
 // class LinearColorPicker extends StatelessWidget {
 //   Color _currColor(NoteModel note) => note.color ?? kDefaultNoteColor;

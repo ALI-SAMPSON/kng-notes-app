@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_taking_app/commons/widgets/custom_app_bar.dart';
 import 'package:note_taking_app/presentation/features/auth/view_model/auth_view_model.dart';
 import 'package:note_taking_app/presentation/features/auth/widgets/form_footer_widget.dart';
 import 'package:note_taking_app/presentation/features/auth/widgets/form_header_widget.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/custom_elevated_button.dart';
-import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
 import 'package:note_taking_app/presentation/resources/app_strings.dart';
 import 'package:note_taking_app/presentation/resources/asset_manager.dart';
@@ -34,7 +31,7 @@ class SignupPage extends StatelessWidget {
                     showBack: true,
                     onBackPressed: () => Navigator.of(context).pop(),
                     title: TAppStrings.tEmpty,
-                    icons: [],
+                    icons: const [],
                   ),
                   15.ph,
                   // form header
@@ -51,7 +48,7 @@ class SignupPage extends StatelessWidget {
                   TextField(
                     controller: model.fullNameTEC,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: TAppStrings.tFullName,
                       prefixIcon: Icon(Icons.person_2_outlined),
                     ),

@@ -1,6 +1,5 @@
 import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
-import 'package:note_taking_app/util/date_util.dart';
 import 'package:note_taking_app/util/ext_fxns.dart';
 import 'package:flutter/material.dart';
 

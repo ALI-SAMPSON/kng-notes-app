@@ -1,18 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_taking_app/commons/widgets/custom_app_bar.dart';
 import 'package:note_taking_app/presentation/features/auth/view_model/auth_view_model.dart';
 import 'package:note_taking_app/presentation/features/auth/widgets/form_footer_widget.dart';
 import 'package:note_taking_app/presentation/features/auth/widgets/form_header_widget.dart';
 import 'package:note_taking_app/presentation/features/note/widgets/custom_elevated_button.dart';
-import 'package:note_taking_app/presentation/resources/app_colors.dart';
 import 'package:note_taking_app/presentation/resources/app_dimens.dart';
 import 'package:note_taking_app/presentation/resources/app_strings.dart';
 import 'package:note_taking_app/presentation/resources/asset_manager.dart';
 import 'package:note_taking_app/routes/routes.dart';
-import 'package:note_taking_app/util/enum/app_state.dart';
 import 'package:note_taking_app/util/ext_fxns.dart';
 import 'package:note_taking_app/util/helper/size_helper.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +33,7 @@ class LoginPage extends StatelessWidget {
                     showBack: true,
                     onBackPressed: () => Navigator.of(context).pop(),
                     title: TAppStrings.tEmpty,
-                    icons: [],
+                    icons: const [],
                   ),
                   // form header
                   Hero(
